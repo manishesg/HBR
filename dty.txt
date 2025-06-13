@@ -42,3 +42,24 @@ Add this line on import data after
 
 EXEC sp_MSforeachtable "ALTER TABLE ? NOCHECK CONSTRAINT ALL"
 GO
+
+---------------------------------------
+
+Get Trend table data of 15 min interval
+—--------------------------------------------------
+
+SELECT *
+       FROM nsp.Trend_Data
+      WHERE Timestamp
+        BETWEEN '2025-05-23 23:46:00' AND '2025-05-23 23:59:00'
+      ORDER BY Timestamp DESC
+
+
+-------------------------------------------
+
+Test Connection
+------------------------------------------
+
+podman load -i mssql-conn-test.zip
+
+docker run -e DB_USERNAME='username' -e DB_PASSWORD='mypassword' -e DB_HOST='xx.xx.xx.xx' -e DB_DATABASE=testdb -e DB_PORT=1433 mssql-conn-test
